@@ -3,15 +3,13 @@
 ## XBMC简介
 ### [xbmc 简介](http://xbmc.org/about/)
 ### xbmc 相关
-* [xbmcbuntu](http://wiki.xbmc.org/?title=XBMCbuntu)
-* [raspbmc](http://www.raspbmc.com/about/)
+* xbmcbuntu <http://wiki.xbmc.org/?title=XBMCbuntu>
+* raspbmc <http://www.raspbmc.com/about>
 ------------------------------
 ## 源码下载
-* download xbmc
-[xbmc sourcecode](http://xbmc.org/download/)
-命令行使用git 下载
-    * `cd ~`
-    * `git clone git://github.com/xbmc/xbmc.git`
+download xbmc [xbmc sourcecode](http://xbmc.org/download/)命令行使用git 下载
+* `cd ~`
+* `git clone git://github.com/xbmc/xbmc.git`
 这样就得到了xbmc的一个文件夹，里面包含的是xbmc的源码。
 [about git](http://baike.baidu.com/view/1531489.htm#1)
 *compile for linux and android use this same package*
@@ -34,44 +32,42 @@ For >= 10.10:
 
 On 8.10 and older versions, libcurl is outdated and thus XBMC will not compile properly.
 In this case you will have to manually compile the latest version.
-    * `wget http://curl.sourceforge.net/download/curl-7.19.7.tar.gz`
-    * `tar -xzf curl-7.19.7.tar.gz`
-    * `cd curl-7.19.7`
-    * `./configure --disable-ipv6 --without-libidn --disable-ldap --prefix=/usr`
-    * `make`
-    * `sudo make install`
+* `wget http://curl.sourceforge.net/download/curl-7.19.7.tar.gz`
+* `tar -xzf curl-7.19.7.tar.gz`
+* `cd curl-7.19.7`
+* `./configure --disable-ipv6 --without-libidn --disable-ldap --prefix=/usr`
+* `make`
+* `sudo make install`
 
 We currently need a version of taglib that has not been packaged yet. We supply a Makefile in
 lib/taglib to make it easy to install into /usr/local until it is available in apt.
 
-   * `make -C lib/taglib`
-   * `sudo make -C lib/taglib install`
+* `make -C lib/taglib`
+* `sudo make -C lib/taglib install`
 
-Unless you are proficient with how linux libraries and versions work, do not
-try to provide it yourself.
-    + **Use a single command to get all build dependencies**
-    You can get all build dependencies used for building the packages on the PPA. For this, you need to specify the PPA in your apt sources. Please find the documentation on how to add a PPA to your system here:<http://launchpad.net/+help/soyuz/ppa-sources-list.html>
-
+Unless you are proficient with how linux libraries and versions work, do not try to provide it yourself.
++ **Use a single command to get all build dependencies**
+You can get all build dependencies used for building the packages on the PPA. For this, you need to specify the PPA in your apt sources. Please find the documentation on how to add a PPA to your system here:<http://launchpad.net/+help/soyuz/ppa-sources-list.html>
 The PPA used for XBMC (developpement version) is located on the following page:<http://launchpad.net/~team-xbmc/+archive/unstable>
 
 * **Note 1** Click on "Technical details about this PPA" to display the sources.list entries.
 * **Note 2** If you are using a distribution that has outdated libraries, do not forget to use the following ppa: <http://launchpad.net/~team-xbmc/+archive/ppa>
 
 Update apt:
-   * `sudo apt-get update`
+* `sudo apt-get update`
 
 Here is the magic command to get the build dependencies (used to compile the version on the PPA).
-   * `sudo apt-get build-dep xbmc`
+* `sudo apt-get build-dep xbmc`
 
 *** For Hardy add `deb http://ppa.launchpad.net/team-xbmc/xbmc-ppa-build-depends/ubuntu hardy main` to sources.list
 
 *** **Avoid using aptitude** for the build-dep command. It doesn't resolve everything.
 
 *** For developers and anyone else who compiles frequently it is recommended to use ccache
-    `sudo apt-get install ccache`
+* `sudo apt-get install ccache`
 
 *** A **tip** for those with multiple computers at home is to check out distcc (totally unsupported from xbmc of course)
-    `sudo apt-get install distcc`
+* `sudo apt-get install distcc`
 2. How to compile
 
 ###出现的问题及解决
