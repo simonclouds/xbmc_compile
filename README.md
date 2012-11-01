@@ -1,9 +1,11 @@
-#MyFirst
-##How do I use markdown to write
+# MyFirst
+
+## How do I use markdown to write
 * learn syntax
 * practice
 * review syntax
-##How can I use gitHub
+
+## How can I use gitHub
 1. what is gitHub
 2. what is git
 3. how they work
