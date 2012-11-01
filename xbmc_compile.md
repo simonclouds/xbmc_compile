@@ -21,7 +21,7 @@ ubuntu 12.04 64位 x86
 ###编译步骤
 1. Installing the required Ubuntu packages
 >    对于老版本的ubuntu，有些包可能没有更新过时了。可以手动编译那些软件包，也可以使用team-xbmc官方的[PPA](http://launchpad.net/~team-xbmc/+archive/ppa)
-    ![参考](../Pictures/Selection_005.png)
+    ![参考](https://github.com/simonclouds/MyFirst/Selection_005.png)
 >    两种方法install required packages
 **Copy and paste the following line corresponding to your system**
 For Ubuntu (all versions >= 7.04):
