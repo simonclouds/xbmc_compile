@@ -14,7 +14,7 @@
 --------------------
 ## 源码下载
 * download xbmc  
-><!--[xbmc sourcecode](http://xbmc.org/download/)-->命令行使用git 下载  
+>	命令行使用git 下载  
 
 	cd ~  
 	git clone git://github.com/xbmc/xbmc.git
