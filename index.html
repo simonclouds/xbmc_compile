@@ -1,0 +1,363 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Xbmc compile by simonclouds</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/simonclouds/xbmc_compile">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/simonclouds/xbmc_compile/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/simonclouds/xbmc_compile/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Xbmc compile</h1>
+          <p>How to compile xbmc for ubuntu and android.</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/simonclouds">simonclouds</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>Xbmc 源码编译</h1>
+
+<hr><h2>XBMC简介</h2>
+
+<h3>xbmc</h3>
+
+<blockquote>
+<p>XBMC 是一个优秀的自由和开源的（GPL）媒体中心软件。XBMC最初是microsoft为Xbox而开发，现在可以运行在Linux、OSX、Windows系统。<br><a href="http://xbmc.org/about/">http://xbmc.org/about/</a></p>
+</blockquote>
+
+<h3>xbmc 相关</h3>
+
+<ul>
+<li><a href="http://wiki.xbmc.org/?title=XBMCbuntu">xbmcbuntu</a></li>
+<li><a href="http://www.raspbmc.com/about/">raspbmc</a></li>
+</ul><hr><h2>源码下载</h2>
+
+<ul>
+<li>
+<p>download xbmc  </p>
+
+<blockquote>
+<p>命令行使用git 下载  </p>
+</blockquote>
+
+<p>cd ~<br>
+git clone git://github.com/xbmc/xbmc.git</p>
+</li>
+<li>
+<p>版本管理工具 <a href="http://baike.baidu.com/view/1531489.htm#1">Git</a>简介  </p>
+
+<blockquote>
+<p>NOTICE: <em>compile for linux and android use this same package</em></p>
+</blockquote>
+</li>
+</ul><hr><h2>Compile for linux</h2>
+
+<h3>环境</h3>
+
+<blockquote>
+<p>ubuntu 12.04 64位 x86</p>
+</blockquote>
+
+<h3>编译步骤</h3>
+
+<h4>1. Installing the required Ubuntu packages</h4>
+
+<blockquote>
+<p>对于老版本的ubuntu，有些包可能没有更新过时了。可以手动编译那些软件包，也可以使用team-xbmc官方的<a href="http://launchpad.net/%7Eteam-xbmc/+archive/ppa">PPA</a>.</p>
+
+<p><strong>两种方法install required packages.</strong></p>
+</blockquote>
+
+<p><em>(1) Copy and paste the following line corresponding to your system</em></p>
+
+<blockquote>
+<p>For Ubuntu (all versions &gt;= 7.04):</p>
+</blockquote>
+
+<pre><code>sudo apt-get install git-core build-essential gawk pmount libtool nasm yasm automake cmake gperf zip unzip bison libsdl-dev libsdl-image1.2-dev libsdl-gfx1.2-dev libsdl-mixer1.2-dev libfribidi-dev liblzo2-dev libfreetype6-dev libsqlite3-dev libogg-dev libasound2-dev python-sqlite libglew-dev libcurl3 libcurl4-gnutls-dev libxrandr-dev libxrender-dev libmad0-dev libogg-dev libvorbisenc2 libsmbclient-dev libmysqlclient-dev libpcre3-dev libdbus-1-dev libhal-dev libhal-storage-dev libjasper-dev libfontconfig-dev libbz2-dev libboost-dev libenca-dev libxt-dev libxmu-dev libpng-dev libjpeg-dev libpulse-dev mesa-utils libcdio-dev libsamplerate-dev libmpeg3-dev libflac-dev libiso9660-dev libass-dev libssl-dev fp-compiler gdc libmpeg2-4-dev libmicrohttpd-dev libmodplug-dev libssh-dev gettext cvs python-dev libyajl-dev libboost-thread-dev libplist-dev libusb-dev libudev-dev libtinyxml-dev libcap-dev curl swig default-jre
+</code></pre>
+
+<blockquote>
+<p>For &gt;= 10.10:  </p>
+</blockquote>
+
+<pre><code>sudo apt-get install autopoint libltdl-dev
+</code></pre>
+
+<blockquote>
+<p>On 8.10 and older versions, libcurl is outdated and thus XBMC will not compile properly.In this case you will have to manually compile the latest version.  </p>
+</blockquote>
+
+<pre><code>wget http://curl.sourceforge.net/download/curl-7.19.7.tar.gz
+tar -xzf curl-7.19.7.tar.gz
+cd curl-7.19.7
+./configure --disable-ipv6 --without-libidn --disable-ldap --prefix=/usr
+make
+sudo make install
+</code></pre>
+
+<blockquote>
+<p>We currently need a version of taglib that has not been packaged yet. We supply a Makefile in lib/taglib to make it easy to install into /usr/local until it is available in apt.  </p>
+</blockquote>
+
+<pre><code>make -C lib/taglib
+sudo make -C lib/taglib install
+</code></pre>
+
+<blockquote>
+<p>Unless you are proficient with how linux libraries and versions work, do not try to provide it yourself.</p>
+</blockquote>
+
+<p><em>(2) Use a single command to get all build dependencies</em></p>
+
+<blockquote>
+<p>You can get all build dependencies used for building the packages on the PPA. For this, you need to specify the PPA in your apt sources. Please find the documentation on how to add a PPA to your system here:<a href="http://launchpad.net/+help/soyuz/ppa-sources-list.html">http://launchpad.net/+help/soyuz/ppa-sources-list.html</a></p>
+
+<p>The PPA used for XBMC (developpement version) is located on the following page:<a href="http://launchpad.net/%7Eteam-xbmc/+archive/unstable">http://launchpad.net/~team-xbmc/+archive/unstable</a></p>
+
+<p><strong>Note 1:</strong>  Click on "Technical details about this PPA" to display the sources.list entries.<br><strong>Note 2:</strong>  If you are using a distribution that has outdated libraries, do not forget to use the following ppa: <a href="http://launchpad.net/%7Eteam-xbmc/+archive/ppa">http://launchpad.net/~team-xbmc/+archive/ppa</a></p>
+
+<p>Update apt:</p>
+</blockquote>
+
+<pre><code>sudo apt-get update
+</code></pre>
+
+<blockquote>
+<p>Here is the magic command to get the build dependencies (used to compile the version on the PPA).  </p>
+</blockquote>
+
+<pre><code>sudo apt-get build-dep xbmc
+</code></pre>
+
+<blockquote>
+<p>For Hardy add <code>deb http://ppa.launchpad.net/team-xbmc/xbmc-ppa-build-depends/ubuntu hardy main</code> to sources.list.<br><strong>Avoid using aptitude</strong> for the build-dep command. It doesn't resolve everything.<br>
+  For developers and anyone else who compiles frequently it is recommended to use ccache.</p>
+</blockquote>
+
+<pre><code>sudo apt-get install ccache
+</code></pre>
+
+<blockquote>
+<p>A <strong>tip</strong> for those with multiple computers at home is to check out distcc (totally unsupported from xbmc of course)  </p>
+</blockquote>
+
+<pre><code>sudo apt-get install distcc
+</code></pre>
+
+<h4>2. How to compile</h4>
+
+<ul>
+<li>  <code>cd $HOME/xbmc</code>
+</li>
+<li>  <code>./bootstrap</code>
+</li>
+<li>  <code>./configure</code>
+</li>
+<li>  <code>make</code>
+</li>
+<li>  <code>sudo make install</code>
+</li>
+</ul><h3>出现的问题及解决</h3>
+
+<p>1.在执行<code>./configure</code> 的时候出现  </p>
+
+<blockquote>
+<p>configure error: Could not find a required library. Please see the README for your platform.  </p>
+
+<p>分析可能的原因是在安装依赖包的时候出现问题.查看install the required packages.  </p>
+</blockquote>
+
+<p>2.在安装依赖包执行很长的那个 <code>sudo ***</code>  的时候出现.</p>
+
+<blockquote>
+<p>The following packages have unmet dependencies:
+    libudev-dev : Depends: libudev0 (= 175-0ubuntu9.1) but 175-0ubuntu9.2 is to be installed
+    E: Unable to correct problems, you have held broken packages.</p>
+
+<p>分析可能的原因是在执行安装依赖包的时候出现的问题,其软件包应该安装9.1版本,但是只有9.2版本的在等待被安装.跟踪此问题:定位libudev0 : 命令: </p>
+</blockquote>
+
+<pre><code>locate libudev0
+</code></pre>
+
+<blockquote>
+<p>得到输出:<br>
+    /var/cache/apt/archives/libudev0_175-0ubuntu9.2_amd64.deb<br>
+    /var/cache/apt/archives/libudev0_175-0ubuntu9.2_i386.deb<br>
+    于是下载libudev0_175-0ubuntu9.2_amd64.deb和libudev0_175-0ubuntu9.2_i386.deb 这两个包,替换掉原来的9.2版本的包.重新安装依赖包.<br>
+  当直接安装这两个包时,提示已经安装了更新的版本.于是先卸载...<br>
+    使用synaptic package manager</p>
+</blockquote>
+
+<pre><code>sudo apt-get install synaptic
+</code></pre>
+
+<blockquote>
+<p>用synaptic卸载包时,提示:<br>
+  Could not apply changes!Fix broken packages first！<br>
+    菜单栏:Edit--&gt;fix broken packages
+    弹出提示框:<br>
+    E: Error, pkgProblemResolver::Resolve generated breaks, this may be caused by held packages.<br>
+    E: Unable to correct dependencies.<br>
+  解决1:(root执行)</p>
+</blockquote>
+
+<pre><code>dpkg --configure -a
+apt-get update
+</code></pre>
+
+<blockquote>
+<p>再进入synaptic 的时候,标记livudev0进行remove的时候,仍然提示相同的错误.<br>
+    解决2:将source.list替换回源来的source.list 再</p>
+</blockquote>
+
+<pre><code>sudo apt-get update
+</code></pre>
+
+<blockquote>
+<p>再卸载libudev0仍然提示broken package!!!!陷坑里去了.于是决定推翻重来.删除xbmc的源码包.从最开始**备份的压缩包**(自己压缩)再重新解压一个文件夹.重来:(.  </p>
+</blockquote>
+
+<p>3.重新configure出现问题:  </p>
+
+<blockquote>
+<p>configure: error: == Could not find libssh. ==<br>
+    solve:install libssh<br>
+    download <a href="http://www.libssh.org/2011/09/17/libssh-0-5-2/">libssh-0-5-2.tar.gz</a> and install it use its readme file.</p>
+</blockquote>
+
+<p>4.configure 找不到 required program .  </p>
+
+<blockquote>
+<p>configure: error: Could not find a required program. Please see the README for your platform.<br>
+    what program missed ? I dont know as well.<br>
+    Do following step again:</p>
+</blockquote>
+
+<pre><code>sudo apt-get install git-core build-essential gawk pmount libtool nasm yasm automake cmake gperf zip unzip bison libsdl-dev libsdl-image1.2-dev libsdl-gfx1.2-dev libsdl-mixer1.2-dev libfribidi-dev liblzo2-dev libfreetype6-dev libsqlite3-dev libogg-dev libasound2-dev python-sqlite libglew-dev libcurl3 libcurl4-gnutls-dev libxrandr-dev libxrender-dev libmad0-dev libogg-dev libvorbisenc2 libsmbclient-dev libmysqlclient-dev libpcre3-dev libdbus-1-dev libhal-dev libhal-storage-dev libjasper-dev libfontconfig-dev libbz2-dev libboost-dev libenca-dev libxt-dev libxmu-dev libpng-dev libjpeg-dev libpulse-dev mesa-utils libcdio-dev libsamplerate-dev libmpeg3-dev libflac-dev libiso9660-dev libass-dev libssl-dev fp-compiler gdc libmpeg2-4-dev libmicrohttpd-dev libmodplug-dev libssh-dev gettext cvs python-dev libyajl-dev libboost-thread-dev libplist-dev libusb-dev libudev-dev libtinyxml-dev libcap-dev curl swig default-jre
+</code></pre>
+
+<blockquote>
+<p>terminal download some packages and problem solved.
+    after that everything goes well till the compiling end.</p>
+</blockquote>
+
+<hr><h2>Compile for android</h2>
+
+<h3>环境</h3>
+
+<blockquote>
+<p>Ubuntu 10.04 64位 X86</p>
+</blockquote>
+
+<h3>编译步骤</h3>
+
+<h4>1.install required packages:</h4>
+
+<pre><code>sudo apt-get install build-essential default-jdk git curl autoconf unzip zip zlib1g-dev gawk gperf cmake ia32-libs
+</code></pre>
+
+<h4>2.Installing and setting up the Android environment</h4>
+
+<blockquote>
+<p>Get the Android SDK, go to <a href="http://developer.android.com/sdk">http://developer.android.com/sdk</a> and
+download the latest version for your operating system. The Crystax NDK
+can be downloaded from <a href="http://www.crystax.net/en/android/ndk">http://www.crystax.net/en/android/ndk</a>  </p>
+
+<p>2.1 Installing Android SDK packages
+After having extracted the Android SDK to  you need to
+install some android packages using the Android SDK Manager:</p>
+</blockquote>
+
+<pre><code># cd &lt;android-sdk&gt;/tools
+# ./android update sdk -u -t platform,platform-tool
+</code></pre>
+
+<blockquote>
+<p>2.2 Setup the Android toolchain
+    To be able to compile XBMC and the libraries it depends on for the
+Android platform you first need to setup an Android toolchain using
+the Android NDK which you earlier extracted to . </p>
+
+<p>The following commands will create a toolchain suitable for the most
+common scenario. The --install-dir option (and therefore the  value)specifies where the resulting toolchain should be installed (your choice).</p>
+</blockquote>
+
+<pre><code># cd &lt;android-ndk&gt;
+# ls platforms
+# cd build/tools
+# ./make-standalone-toolchain.sh --ndk-dir=../../ \
+ --install-dir=&lt;android-toolchain&gt;/android-14 --platform=android-14
+</code></pre>
+
+<blockquote>
+<p>2.3 Create a (new) debug key to sign debug APKs</p>
+</blockquote>
+
+<pre><code># keytool -genkey -keystore ~/.android/debug.keystore -v -alias \
+  androiddebugkey -dname "CN=Android Debug,O=Android,C=US" -keypass \
+  android -storepass android -keyalg RSA -keysize 2048 -validity 10000
+</code></pre>
+
+<h4>3.Getting the source code</h4>
+
+<pre><code># cd $HOME
+# git clone git://github.com/xbmc/xbmc.git xbmc-android
+# cd xbmc-android
+# git submodule update --init addons/skin.touched
+</code></pre>
+
+<h4>4.compile</h4>
+
+<blockquote>
+<p>4.1 Building dependencies</p>
+</blockquote>
+
+<pre><code># cd $HOME/xbmc-android/tools/android/depends
+# ./bootstrap
+# ./configure --build=arm-linux-android --with-sdk=/home/$USER/Tools/sdk-android --with-ndk=/home/$USER/Tools/ndk-r7 --with-toolchain=/home/$USER/Tools/android-14 --with-tarballs=/home/$USER/Tools/tarballs
+# make -j4
+</code></pre>
+
+<blockquote>
+<p>4.2 Building XBMC  </p>
+</blockquote>
+
+<pre><code># cd $HOME/xbmc-android
+# make -C tools/android/depends/xbmc
+</code></pre>
+
+<h3>出现的问题及解决</h3>
+
+<hr><p>2:55 下午 星期五, 十一月 02, 2012</p>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
